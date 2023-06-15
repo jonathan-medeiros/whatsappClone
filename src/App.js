@@ -19,13 +19,6 @@ const App = () => {
 
     const [chatlist, setChatList] = useState([]);
     const [activeChat, setActiveChat] = useState({});
-    
-    // const [user, setUser] = useState({
-    //     id: '2SDNPOWOtaM0A3OYZ8jvO13xza53',
-    //     name: 'Jonathan Damásio Medeiros',
-    //     avatar: 'https://firebasestorage.googleapis.com/v0/b/whatsappclone-fe560.appspot.com/o/2SDNPOWOtaM0A3OYZ8jvO13xza53?alt=media&token=11e38086-129c-48e1-a530-ff3f33791236'
-    // });
-
     const [user, setUser] = useState(null);
     const [showNewChat, setShowNewChat] = useState(false);
 
@@ -64,6 +57,7 @@ const App = () => {
                     user={user}
                     show={showNewChat}
                     setShow={setShowNewChat}
+                    setActiveChat={setActiveChat}
                 />
                 <header>
                     <img className='header--avatar' src={URL.createObjectURL(user.avatar)} alt='' />

@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import './style.css';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-import Avatar from '../../img/avatar.png';
-
 import { getContactList, addNewChat as addNewChatApi} from '../../Api'
 
-export const NewChat = ({user, chatlist, show, setShow}) => {
+export const NewChat = ({user, chatlist, show, setShow, setActiveChat}) => {
 
     const [list, setList] = useState([]);
 
@@ -26,6 +24,17 @@ export const NewChat = ({user, chatlist, show, setShow}) => {
     }
 
     const addNewChat = async (user2) => {
+
+        //verifica se a pessoa já não está no chat
+        for (let i in chatlist){
+            if (chatlist[i].with === user2.id) {
+                //já está falando com essa pessoa
+                setActiveChat(chatlist[i]);
+                handleClose();
+                return;
+            }
+        }
+
         await addNewChatApi(user, user2);
 
         handleClose();
